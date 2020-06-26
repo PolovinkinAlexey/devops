@@ -1,0 +1,75 @@
+#!/bin/bash
+#echo "Start script!"
+
+#------------------------------------------------------------
+#read -p "Enter a: " sideA
+#if [ $sideA -gt 0 ] > errors 2>errorMyScript; then
+#	read -p "Enter b: " sideB
+#	if [ $sideB -gt 0 ] > errors 2>errorMyScript; then
+#		read -p "Enter c: " sideC
+#		if [ $sideC -gt 0 ] > errors 2>errorMyScript; then
+#			echo "Yur enter A=$sideA, B=$sideB, C=$sideC"
+#		else
+#			echo "Enter positive number! (>0)"
+#                       exit 1;
+#                fi
+#	else
+#		echo "Enter positive number! (>0)"
+#		exit 1;
+#        fi
+#else
+#	echo "Enter positive number! (>0)"
+#	exit 1;
+#fi
+#------------------------------------------------------------
+
+read sideA sideB sideC
+if [ $sideA -lt 0 -o $sideB -lt 0 -o $sideC -lt 0 ]; then
+	echo "Enter positive number! (>0)" >&2
+        exit 1
+
+fi
+
+if [ $(( $sideA + $sideB )) -le $sideC -o $(( $sideB + $sideC )) -le $sideA -o $(( $sideA + $sideC )) -le $sideB ]; then
+        echo "Not carrent enter" >&2
+        exit 2
+fi
+
+if [ $sideA -eq $sideB -a $sideA -eq $sideC ]; then
+	echo "Равносторонний треугольник"
+	exit 0
+fi
+
+#if [ "$sideA" -eq "$sideB" ] -o [ "$sideA" -eq "$sideC" ] -o [ "$sideB" -eq "$sideC" ]; then
+#	echo "Равнобедренный треугольник"
+#	exit 0
+#else
+#	echo "Обычный треугольник"
+#	exit 0
+#fi
+#echo "Обычный треугольник"
+#exit 0
+
+
+if [ $sideA -eq $sideB ]
+then
+       echo "Равнобедренный треугольник"
+       exit 0
+fi
+
+if [ $sideA -eq $sideC ]
+then
+       echo "Равнобедренный треугольник"
+       exit 0
+fi
+
+if [ $sideB -eq $sideC ]
+then
+       echo "Равнобедренный треугольник"
+       exit 0
+else
+	echo "Обычный треугольник"
+	exit 0
+fi
+
+exit 0
